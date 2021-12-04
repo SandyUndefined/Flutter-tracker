@@ -21,7 +21,10 @@ class _LoginState extends State<Login> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const FlutterLogo(size: 150),
+              Image.asset(
+                "assets/images/Sign_in.png",
+                width: MediaQuery.of(context).size.width * .8,
+              ),
               const SizedBox(height: 50),
               _signInButton(context),
             ],
@@ -54,17 +57,14 @@ Widget _signInButton(BuildContext context) {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Image(
-              image: AssetImage("assets/google_logo.png"), height: 35.0),
-          const Padding(
+        children: const <Widget>[
+          Image(
+              image: AssetImage("assets/images/google_logo.png"), height: 35.0),
+          Padding(
             padding: EdgeInsets.only(left: 10),
-            child: const Text(
+            child: Text(
               'Sign in with Google',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.grey,
-              ),
+              style: TextStyle(fontSize: 20, color: Colors.white),
             ),
           )
         ],
