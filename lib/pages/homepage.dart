@@ -20,7 +20,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   final Completer<GoogleMapController> _controller = Completer();
   final Set<Marker> _markers = <Marker>{};
 // for my drawn routes on the map
@@ -33,9 +33,9 @@ class _HomeState extends State<Home> {
   late BitmapDescriptor destinationIcon;
 // the user's initial location and current location
 // as it moves
-  late LocationData currentLocation;
+  LocationData? currentLocation;
 // a reference to the destination location
-  late LocationData destinationLocation;
+  LocationData? destinationLocation;
 // wrapper around the location API
   late Location location;
   double pinPillPosition = -100;
@@ -108,7 +108,8 @@ class _HomeState extends State<Home> {
         target: SOURCE_LOCATION);
     if (currentLocation != null) {
       initialCameraPosition = CameraPosition(
-          target: LatLng(currentLocation.latitude!, currentLocation.longitude!),
+          target:
+              LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
           zoom: CAMERA_ZOOM,
           tilt: CAMERA_TILT,
           bearing: CAMERA_BEARING);
@@ -176,10 +177,10 @@ class _HomeState extends State<Home> {
     // get a LatLng for the source location
     // from the LocationData currentLocation object
     var pinPosition =
-        LatLng(currentLocation.latitude!, currentLocation.longitude!);
+        LatLng(currentLocation!.latitude!, currentLocation!.longitude!);
     // get a LatLng out of the LocationData object
     var destPosition =
-        LatLng(destinationLocation.latitude!, destinationLocation.longitude!);
+        LatLng(destinationLocation!.latitude!, destinationLocation!.longitude!);
 
     sourcePinInfo = PinInformation(
         locationName: "Start Location",
@@ -225,10 +226,10 @@ class _HomeState extends State<Home> {
   void setPolylines() async {
     List<PointLatLng> result = (await polylinePoints.getRouteBetweenCoordinates(
             googleAPIKey,
-            currentLocation.latitude,
-            currentLocation.longitude,
-            destinationLocation.latitude,
-            destinationLocation.longitude))
+            PointLatLng(
+                currentLocation!.latitude!, currentLocation!.longitude!),
+            PointLatLng(destinationLocation!.latitude!,
+                destinationLocation!.longitude!)))
         .points;
 
     if (result.isNotEmpty) {
@@ -254,7 +255,7 @@ class _HomeState extends State<Home> {
       zoom: CAMERA_ZOOM,
       tilt: CAMERA_TILT,
       bearing: CAMERA_BEARING,
-      target: LatLng(currentLocation.latitude!, currentLocation.longitude!),
+      target: LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
     );
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(cPosition));
@@ -263,7 +264,7 @@ class _HomeState extends State<Home> {
     setState(() {
       // updated position
       var pinPosition =
-          LatLng(currentLocation.latitude!, currentLocation.longitude!);
+          LatLng(currentLocation!.latitude!, currentLocation!.longitude!);
 
       sourcePinInfo.location = pinPosition;
 
