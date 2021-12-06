@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tracker/components/login_controller.dart';
 import 'package:tracker/pages/homepage.dart';
-import 'package:tracker/widgets/login_controller.dart';
 // import 'package:flutter/widgets.dart';
 
 class Login extends StatefulWidget {
@@ -37,7 +37,6 @@ class _LoginState extends State<Login> {
 
 Widget _signInButton(BuildContext context) {
   return ElevatedButton(
-    // splashColor: Colors.grey,
     onPressed: () {
       signInWithGoogle().then((result) {
         Navigator.of(context).push(
@@ -49,9 +48,9 @@ Widget _signInButton(BuildContext context) {
         );
       });
     },
-    // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-    // highlightElevation: 0,
-    // borderSide: BorderSide(color: Colors.grey),
+    style: ElevatedButton.styleFrom(
+      primary: const Color(0xFFFFFAED),
+    ),
     child: Padding(
       padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
       child: Row(
@@ -64,7 +63,7 @@ Widget _signInButton(BuildContext context) {
             padding: EdgeInsets.only(left: 10),
             child: Text(
               'Sign in with Google',
-              style: TextStyle(fontSize: 20, color: Colors.white),
+              style: TextStyle(fontSize: 20, color: Colors.black54),
             ),
           )
         ],

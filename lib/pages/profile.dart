@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tracker/widgets/login_controller.dart';
+import 'package:tracker/components/login_controller.dart';
 import 'package:flutter/widgets.dart';
 import 'login.dart';
 
