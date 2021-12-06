@@ -21,13 +21,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => throw UnimplementedError();
+
   final Completer<GoogleMapController> _controller = Completer();
   final Set<Marker> _markers = <Marker>{};
 // for my drawn routes on the map
   final Set<Polyline> _polylines = <Polyline>{};
   List<LatLng> polylineCoordinates = [];
   late PolylinePoints polylinePoints;
-  String googleAPIKey = '<API_KEY>';
+  String googleAPIKey = 'AIzaSyBz-k7XQmPPHmgRrSv2e4WEvIx1A4LXODs';
 // for my custom marker pins
   late BitmapDescriptor sourceIcon;
   late BitmapDescriptor destinationIcon;
@@ -74,14 +77,14 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   void setSourceAndDestinationIcons() async {
     BitmapDescriptor.fromAssetImage(
             const ImageConfiguration(devicePixelRatio: 2.0),
-            'assets/driving_pin.png')
+            'assets/images/driving_pin.png')
         .then((onValue) {
       sourceIcon = onValue;
     });
 
     BitmapDescriptor.fromAssetImage(
             const ImageConfiguration(devicePixelRatio: 2.0),
-            'assets/destination_map_marker.png')
+            'assets/images/destination_map_marker.png')
         .then((onValue) {
       destinationIcon = onValue;
     });
