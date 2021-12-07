@@ -20,9 +20,9 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
-  @override
-  bool get wantKeepAlive => throw UnimplementedError();
+class _HomeState extends State<Home> {
+  // @override
+  // bool get wantKeepAlive => throw UnimplementedError();
 
   final Completer<GoogleMapController> _controller = Completer();
   final Set<Marker> _markers = <Marker>{};
