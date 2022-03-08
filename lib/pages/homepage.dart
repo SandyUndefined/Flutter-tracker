@@ -11,7 +11,7 @@ const double CAMERA_ZOOM = 16;
 const double CAMERA_TILT = 80;
 const double CAMERA_BEARING = 30;
 const LatLng SOURCE_LOCATION = LatLng(42.747932, -71.167889);
-const LatLng DEST_LOCATION = LatLng(37.335685, -122.0605916);
+const LatLng DEST_LOCATION = LatLng(22.46501, 88.38917);
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -152,7 +152,7 @@ class _HomeState extends State<Home> {
         children: <Widget>[
           GoogleMap(
               myLocationEnabled: true,
-              compassEnabled: true,
+              compassEnabled: false,
               tiltGesturesEnabled: false,
               markers: _markers,
               polylines: _polylines,
@@ -234,6 +234,8 @@ class _HomeState extends State<Home> {
             PointLatLng(destinationLocation!.latitude!,
                 destinationLocation!.longitude!)))
         .points;
+
+    print('This is working $result');
 
     if (result.isNotEmpty) {
       for (var point in result) {
